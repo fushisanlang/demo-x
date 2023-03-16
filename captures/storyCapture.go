@@ -7,12 +7,12 @@ import (
 	"github.com/rivo/tview"
 )
 
-func VerifyCaptures(app *tview.Application) *tview.Flex {
-	scene1 := scenes.VerifyScene()
+func StoryCapture(app *tview.Application) *tview.Flex {
+	scene1 := scenes.StoryScene()
 
 	scene1.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {
-		if event.Key() == tcell.KeyEnter {
-			app.SetRoot(StartCaptures(app), true)
+		if event.Key() == tcell.KeyEnter || event.Rune() == 'n' {
+			app.SetRoot(StartCapture(app), true)
 			return nil
 		}
 		return event

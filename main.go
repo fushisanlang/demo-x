@@ -10,7 +10,7 @@ func main() {
 
 	app := tview.NewApplication()
 
-	startScene := captures.VerifyCaptures(app)
+	startScene := captures.VerifyCapture(app)
 	//startScene2 := scenes.StartScene2(app)
 
 	// Set the application's root scene to the first scene.

@@ -5,6 +5,16 @@ import (
 	"github.com/rivo/tview"
 )
 
+func createBox(title string, content []TextPrint) *tview.Box {
+	box := tview.NewBox().SetBorder(true).SetTitle(title)
+	box.SetDrawFunc(func(screen tcell.Screen, x, y, width, height int) (int, int, int, int) {
+		for i, line := range content {
+			tview.Print(screen, line.Line, x+2, y+i+1, width, line.Align, line.Color)
+		}
+		return x, y, width, height
+	})
+	return box
+}
 func baseScene(statusBox, goodBox, bagBox, mapBox, helpBox, newsBox, gameBox *tview.Box) *tview.Flex {
 
 	flex := tview.NewFlex().
