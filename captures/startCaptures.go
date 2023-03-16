@@ -2,16 +2,17 @@ package captures
 
 import (
 	"demo-x/scenes"
+
 	"github.com/gdamore/tcell/v2"
 	"github.com/rivo/tview"
 )
 
-func StartScene(app *tview.Application) *tview.Flex {
+func StartCaptures(app *tview.Application) *tview.Flex {
 	scene1 := scenes.StartScene()
 
 	scene1.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {
 		if event.Rune() == 'n' || event.Key() == tcell.KeyRight {
-			app.SetRoot(StartScene2(app), true)
+			app.SetRoot(StartCaptures2(app), true)
 			return nil
 		}
 		return event
@@ -20,12 +21,12 @@ func StartScene(app *tview.Application) *tview.Flex {
 
 }
 
-func StartScene2(app *tview.Application) *tview.Flex {
+func StartCaptures2(app *tview.Application) *tview.Flex {
 	scene1 := scenes.StartScene2()
 
 	scene1.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {
-		if event.Key() == tcell.KeyLeft || event.Rune() == 'b' {
-			app.SetRoot(StartScene(app), true)
+		if event.Rune() == 'b' || event.Key() == tcell.KeyLeft {
+			app.SetRoot(StartCaptures(app), true)
 			return nil
 		}
 		return event
