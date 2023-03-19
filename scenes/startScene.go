@@ -9,14 +9,7 @@ import (
 )
 
 func StartScene(startCode int) *tview.Flex {
-	statusBox := createBox("角色", []model.TextPrint{
-		{Line: "角色 丹阳子", Align: tview.AlignLeft, Color: conf.NormalColor},
-		{Line: "等级 0", Align: tview.AlignLeft, Color: conf.NormalColor},
-		{Line: "经验 0", Align: tview.AlignLeft, Color: conf.NormalColor},
-		{Line: "生命 100", Align: tview.AlignLeft, Color: conf.NormalColor},
-		{Line: "法力 100", Align: tview.AlignLeft, Color: conf.NormalColor},
-		{Line: "精力 100", Align: tview.AlignLeft, Color: conf.NormalColor},
-	})
+	statusBox := tview.NewBox()
 	questsBox := tview.NewBox()
 	mapBox := createBox("地图", []model.TextPrint{
 		{},
@@ -55,14 +48,16 @@ func StartScene(startCode int) *tview.Flex {
 			{Line: "F2  打开背包", Align: tview.AlignLeft, Color: conf.NormalColor},
 			{Line: "F3  技能列表", Align: tview.AlignLeft, Color: conf.NormalColor},
 			{Line: "F4  任务列表", Align: tview.AlignLeft, Color: conf.NormalColor},
-			{Line: "F4  任务列表", Align: tview.AlignLeft, Color: conf.NormalColor},
 			{Line: " ", Align: tview.AlignLeft, Color: conf.NormalColor},
-
-			{Line: "F5  关闭对话", Align: tview.AlignLeft, Color: conf.NormalColor},
+			//{Line: "F5  任务列表", Align: tview.AlignLeft, Color: conf.NormalColor},
 			{Line: "F6  打开地图", Align: tview.AlignLeft, Color: conf.NormalColor},
-
+			//{Line: "F7  任务列表", Align: tview.AlignLeft, Color: conf.NormalColor},
+			//{Line: "F8  任务列表", Align: tview.AlignLeft, Color: conf.NormalColor},
 			{Line: " ", Align: tview.AlignLeft, Color: conf.NormalColor},
-			{Line: "F12 快速退出游戏 ", Align: tview.AlignLeft, Color: conf.NormalColor},
+			//{Line: "F9  关闭对话", Align: tview.AlignLeft, Color: conf.NormalColor},
+			//{Line: "F10 挂机界面", Align: tview.AlignLeft, Color: conf.NormalColor},
+			{Line: "F11 保存游戏", Align: tview.AlignLeft, Color: conf.NormalColor},
+			{Line: "F12 退出游戏 ", Align: tview.AlignLeft, Color: conf.NormalColor},
 		})
 	}
 	gameFlex := startScene(startCode)

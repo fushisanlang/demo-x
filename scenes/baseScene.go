@@ -63,7 +63,7 @@ func baseScene(statusBox, questsBox, mapBox, helpBox, newsBox *tview.Box, gameFl
 		AddItem(gameFlex, 0, 1, false).
 		AddItem(tview.NewFlex().SetDirection(tview.FlexRow).
 			AddItem(mapBox, 13, 0, false).
-			AddItem(helpBox, 15, 0, false).
+			AddItem(helpBox, 16, 0, false).
 			AddItem(newsBox, 0, 1, true), 30, 0, false)
 
 	return flex
