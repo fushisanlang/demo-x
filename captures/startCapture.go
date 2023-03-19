@@ -15,8 +15,8 @@ func StartCapture(app *tview.Application) *tview.Flex {
 			startCode = startCode + 1
 			app.SetRoot(StartCapture(app), true)
 			return nil
-		} else if event.Key() == tcell.KeyEnter {
-			panic(1)
+			//} else if event.Key() == tcell.KeyEnter {
+			//	panic(1)
 		}
 		return event
 	})

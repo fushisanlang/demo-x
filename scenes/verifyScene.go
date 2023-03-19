@@ -34,13 +34,13 @@ func VerifyScene() *tview.Flex {
 		{Line: "祝您游戏愉快", Align: tview.AlignCenter, Color: conf.BrightColor},
 	})
 
-	goodBox := tview.NewBox().SetBorder(true).SetTitle("多余窗口")
+	formatBox := tview.NewBox().SetBorder(true).SetTitle("多余窗口")
 
 	flex := tview.NewFlex().
 		AddItem(tview.NewFlex().SetDirection(tview.FlexRow).
 			AddItem(statusBox, 50, 0, false).
-			AddItem(goodBox, 0, 1, true), 160, 0, false).
-		AddItem(goodBox, 0, 1, true)
+			AddItem(formatBox, 0, 1, true), 160, 0, false).
+		AddItem(formatBox, 0, 1, true)
 	return flex
 
 }

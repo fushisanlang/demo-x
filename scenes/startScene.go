@@ -17,8 +17,7 @@ func StartScene(startCode int) *tview.Flex {
 		{Line: "法力 100", Align: tview.AlignLeft, Color: conf.NormalColor},
 		{Line: "精力 100", Align: tview.AlignLeft, Color: conf.NormalColor},
 	})
-	goodBox := tview.NewBox()
-	bagBox := tview.NewBox()
+	questsBox := tview.NewBox()
 	mapBox := createBox("地图", []model.TextPrint{
 		{},
 		{Line: "#######", Align: tview.AlignCenter, Color: conf.NormalColor},
@@ -30,20 +29,44 @@ func StartScene(startCode int) *tview.Flex {
 	helpBox := tview.NewBox()
 	newsBox := tview.NewBox()
 
-	if startCode > 3 {
-		bagBox = createBox("背包", []model.TextPrint{
-			{Line: "a", Align: tview.AlignLeft, Color: conf.NormalColor},
-		})
-	}
 	if startCode > 5 {
+		questsBox = createBox("任务", []model.TextPrint{
+			{Line: "- 修炼" + service.NewGoodsSlice[0].GoodsName, Align: tview.AlignLeft, Color: conf.BrightColor},
+		})
+		statusBox = createBox("角色", []model.TextPrint{
+			{Line: "角色 丹阳子", Align: tview.AlignLeft, Color: conf.NormalColor},
+			{Line: "等级 0", Align: tview.AlignLeft, Color: conf.NormalColor},
+			{Line: "经验 0", Align: tview.AlignLeft, Color: conf.NormalColor},
+			{Line: "生命 100", Align: tview.AlignLeft, Color: conf.NormalColor},
+			{Line: "法力 100", Align: tview.AlignLeft, Color: conf.NormalColor},
+			{Line: "精力 100", Align: tview.AlignLeft, Color: conf.NormalColor},
+			{Line: " ", Align: tview.AlignLeft, Color: conf.NormalColor},
+			{Line: " ", Align: tview.AlignLeft, Color: conf.NormalColor},
+
+			{Line: "心法 九阳神功", Align: tview.AlignLeft, Color: conf.NormalColor},
+			{Line: "功法 乾坤大挪移", Align: tview.AlignLeft, Color: conf.NormalColor},
+			{Line: "轻功 梯云纵", Align: tview.AlignLeft, Color: conf.NormalColor},
+			{Line: "吐纳 搬山诀", Align: tview.AlignLeft, Color: conf.NormalColor},
+			{Line: "灵器 翻天印", Align: tview.AlignLeft, Color: conf.NormalColor},
+			{Line: "法袍 皂色玄衣", Align: tview.AlignLeft, Color: conf.NormalColor},
+		})
 		helpBox = createBox("帮助", []model.TextPrint{
-			{Line: "a 属性面板翻页", Align: tview.AlignLeft, Color: conf.NormalColor},
-			{Line: "b 运转功法", Align: tview.AlignLeft, Color: conf.NormalColor},
-			{Line: "c 运转功法", Align: tview.AlignLeft, Color: conf.NormalColor},
+			{Line: "F1  帮助菜单", Align: tview.AlignLeft, Color: conf.NormalColor},
+			{Line: "F2  打开背包", Align: tview.AlignLeft, Color: conf.NormalColor},
+			{Line: "F3  技能列表", Align: tview.AlignLeft, Color: conf.NormalColor},
+			{Line: "F4  任务列表", Align: tview.AlignLeft, Color: conf.NormalColor},
+			{Line: "F4  任务列表", Align: tview.AlignLeft, Color: conf.NormalColor},
+			{Line: " ", Align: tview.AlignLeft, Color: conf.NormalColor},
+
+			{Line: "F5  关闭对话", Align: tview.AlignLeft, Color: conf.NormalColor},
+			{Line: "F6  打开地图", Align: tview.AlignLeft, Color: conf.NormalColor},
+
+			{Line: " ", Align: tview.AlignLeft, Color: conf.NormalColor},
+			{Line: "F12 快速退出游戏 ", Align: tview.AlignLeft, Color: conf.NormalColor},
 		})
 	}
 	gameFlex := startScene(startCode)
-	flex := baseScene(statusBox, goodBox, bagBox, mapBox, helpBox, newsBox, gameFlex)
+	flex := baseScene(statusBox, questsBox, mapBox, helpBox, newsBox, gameFlex)
 	return flex
 }
 
@@ -65,14 +88,14 @@ func startScene(startCode int) *tview.Flex {
 		{},
 		{Line: "刘不空:", Align: tview.AlignLeft, Color: conf.BrightColor},
 		{Line: "  徒儿，距离我带你回门已有一十八年了。这几年你外功底子打得不错，已经可以修炼内功了。", Align: tview.AlignLeft, Color: conf.NormalColor},
-		{Line: "  这是本门的入门内功《纳气诀》，你从今日就开始修炼吧。", Align: tview.AlignLeft, Color: conf.NormalColor},
+		{Line: "  这是本门的入门内功" + service.NewGoodsSlice[0].GoodsName + "，你从今日就开始修炼吧。", Align: tview.AlignLeft, Color: conf.NormalColor},
 		{},
 	})
 	box4 := createAlertBox("", []model.TextPrint{
 
 		{Line: "获得物品", Align: tview.AlignCenter, Color: conf.NormalColor},
 
-		{Line: "《纳气诀》", Align: tview.AlignCenter, Color: conf.ExclusiveColors},
+		{Line: service.NewGoodsSlice[0].GoodsName, Align: tview.AlignCenter, Color: conf.ExclusiveColors},
 	})
 	box5 := createBox("", []model.TextPrint{
 		{},
@@ -83,7 +106,7 @@ func startScene(startCode int) *tview.Flex {
 	box6 := createBox("", []model.TextPrint{
 		{},
 		{Line: "刘不空:", Align: tview.AlignLeft, Color: conf.BrightColor},
-		{Line: "  我近日要去黑水参加荡魔大会。如果《纳气诀》修炼中有不解之处，可以去找你师兄。", Align: tview.AlignLeft, Color: conf.NormalColor},
+		{Line: "  我近日要去黑水参加荡魔大会。如果" + service.NewGoodsSlice[0].GoodsName + "修炼中有不解之处，可以去找你师兄。", Align: tview.AlignLeft, Color: conf.NormalColor},
 		{},
 	})
 

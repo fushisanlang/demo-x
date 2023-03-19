@@ -11,8 +11,7 @@ func VeriftSaveFileScene() *tview.Flex {
 	formatBox := formatBox()
 	footBox := footBox()
 	statusBox := tview.NewBox()
-	goodBox := tview.NewBox()
-	bagBox := tview.NewBox()
+	questsBox := tview.NewBox()
 	mapBox := tview.NewBox()
 	helpBox := tview.NewBox()
 	newsBox := tview.NewBox()
@@ -27,7 +26,7 @@ func VeriftSaveFileScene() *tview.Flex {
 		AddItem(formatBox, 0, 1, false).
 		AddItem(formatBox, 0, 1, false).
 		AddItem(footBox, 5, 0, false)
-	flex := baseScene(statusBox, goodBox, bagBox, mapBox, helpBox, newsBox, gameFlex)
+	flex := baseScene(statusBox, questsBox, mapBox, helpBox, newsBox, gameFlex)
 
 	return flex
 }
@@ -35,8 +34,7 @@ func VeriftSaveFileSuccessScene() *tview.Flex {
 	formatBox := formatBox()
 	footBox := footBox()
 	statusBox := tview.NewBox()
-	goodBox := tview.NewBox()
-	bagBox := tview.NewBox()
+	questsBox := tview.NewBox()
 	mapBox := tview.NewBox()
 	helpBox := tview.NewBox()
 	newsBox := tview.NewBox()
@@ -52,7 +50,7 @@ func VeriftSaveFileSuccessScene() *tview.Flex {
 		AddItem(formatBox, 0, 1, false).
 		AddItem(formatBox, 0, 1, false).
 		AddItem(footBox, 5, 0, false)
-	flex := baseScene(statusBox, goodBox, bagBox, mapBox, helpBox, newsBox, gameFlex)
+	flex := baseScene(statusBox, questsBox, mapBox, helpBox, newsBox, gameFlex)
 
 	return flex
 }
@@ -60,8 +58,7 @@ func VeriftSaveFileFailScene() *tview.Flex {
 	formatBox := formatBox()
 	footBox := footBox()
 	statusBox := tview.NewBox()
-	goodBox := tview.NewBox()
-	bagBox := tview.NewBox()
+	questsBox := tview.NewBox()
 	mapBox := tview.NewBox()
 	helpBox := tview.NewBox()
 	newsBox := tview.NewBox()
@@ -79,7 +76,7 @@ func VeriftSaveFileFailScene() *tview.Flex {
 		AddItem(formatBox, 0, 1, false).
 		AddItem(formatBox, 0, 1, false).
 		AddItem(footBox, 5, 0, false)
-	flex := baseScene(statusBox, goodBox, bagBox, mapBox, helpBox, newsBox, gameFlex)
+	flex := baseScene(statusBox, questsBox, mapBox, helpBox, newsBox, gameFlex)
 
 	return flex
 }

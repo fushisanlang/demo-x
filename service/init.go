@@ -1,5 +1,6 @@
 package service
 
 func init() {
-	initBags()
+	//initBags()
+	initData()
 }
