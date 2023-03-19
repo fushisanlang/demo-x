@@ -1,11 +1,34 @@
 package scenes
 
 import (
+	"demo-x/conf"
+	"demo-x/model"
+
 	"github.com/gdamore/tcell/v2"
 	"github.com/rivo/tview"
 )
 
-func createBox(title string, content []TextPrint) *tview.Box {
+func createAlertBox(title string, content []model.TextPrint) *tview.Box {
+	box := tview.NewBox().SetTitle(title).SetBackgroundColor(tcell.ColorDarkGray)
+	box.SetDrawFunc(func(screen tcell.Screen, x, y, width, height int) (int, int, int, int) {
+		for i, line := range content {
+			tview.Print(screen, line.Line, x+2, y+i+1, width, line.Align, line.Color)
+		}
+		return x, y, width, height
+	})
+	return box
+}
+func createBoxWithoutSider(content []model.TextPrint) *tview.Box {
+	box := tview.NewBox().SetBorder(false)
+	box.SetDrawFunc(func(screen tcell.Screen, x, y, width, height int) (int, int, int, int) {
+		for i, line := range content {
+			tview.Print(screen, line.Line, x+2, y+i+1, width, line.Align, line.Color)
+		}
+		return x, y, width, height
+	})
+	return box
+}
+func createBox(title string, content []model.TextPrint) *tview.Box {
 	box := tview.NewBox().SetBorder(true).SetTitle(title)
 	box.SetDrawFunc(func(screen tcell.Screen, x, y, width, height int) (int, int, int, int) {
 		for i, line := range content {
@@ -15,24 +38,33 @@ func createBox(title string, content []TextPrint) *tview.Box {
 	})
 	return box
 }
-func baseScene(statusBox, goodBox, bagBox, mapBox, helpBox, newsBox, gameBox *tview.Box) *tview.Flex {
+func formatBox() *tview.Box {
+	//用来创建一个空box，占位使用，确保显示内容上下剧中
+	formatBox := createBoxWithoutSider([]model.TextPrint{
+		{},
+	})
+	return formatBox
+}
+func footBox() *tview.Box {
+	footBox := createBoxWithoutSider([]model.TextPrint{
+		{},
+		{Line: "点击 \"回车\" 键继续", Align: tview.AlignCenter, Color: conf.GuideColor},
+		{},
+	})
+	return footBox
+}
+func baseScene(statusBox, goodBox, bagBox, mapBox, helpBox, newsBox *tview.Box, gameFlex *tview.Flex) *tview.Flex {
 
 	flex := tview.NewFlex().
 		AddItem(tview.NewFlex().SetDirection(tview.FlexRow).
 			AddItem(statusBox, 8, 0, false).
 			AddItem(goodBox, 8, 0, false).
 			AddItem(bagBox, 0, 1, true), 30, 0, false).
-		AddItem(gameBox, 0, 1, true).
+		AddItem(gameFlex, 0, 1, false).
 		AddItem(tview.NewFlex().SetDirection(tview.FlexRow).
 			AddItem(mapBox, 13, 0, false).
 			AddItem(helpBox, 15, 0, false).
 			AddItem(newsBox, 0, 1, true), 30, 0, false)
 
 	return flex
-}
-
-type TextPrint struct {
-	Line  string
-	Align int
-	Color tcell.Color
 }

@@ -11,9 +11,7 @@ func main() {
 	app := tview.NewApplication()
 
 	startScene := captures.VerifyCapture(app)
-	//startScene2 := scenes.StartScene2(app)
-
-	// Set the application's root scene to the first scene.
+	//@todo: 需要判断是否有存档
 
 	app.SetRoot(startScene, true)
 	//// Run the application.
