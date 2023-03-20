@@ -53,6 +53,20 @@ func footBox() *tview.Box {
 	})
 	return footBox
 }
+func baseSceneWithSide(statusBox, questsBox, mapBox, helpBox, newsBox *tview.Box, gameFlex *tview.Flex) *tview.Flex {
+	flex := tview.NewFlex().
+		AddItem(tview.NewFlex().SetDirection(tview.FlexRow).
+			AddItem(statusBox, 16, 0, false).
+			//AddItem(questsBox, 8, 0, false).
+			AddItem(questsBox, 0, 1, true), 10, 0, false).
+		AddItem(gameFlex, 0, 1, false).
+		AddItem(tview.NewFlex().SetDirection(tview.FlexRow).
+			AddItem(mapBox, 13, 0, false).
+			AddItem(helpBox, 16, 0, false).
+			AddItem(newsBox, 0, 1, true), 10, 0, false)
+
+	return flex
+}
 func baseScene(statusBox, questsBox, mapBox, helpBox, newsBox *tview.Box, gameFlex *tview.Flex) *tview.Flex {
 
 	flex := tview.NewFlex().

@@ -28,20 +28,20 @@ func StartScene(startCode int) *tview.Flex {
 		})
 		statusBox = createBox("角色", []model.TextPrint{
 			{Line: "角色 丹阳子", Align: tview.AlignLeft, Color: conf.NormalColor},
-			{Line: "等级 0", Align: tview.AlignLeft, Color: conf.NormalColor},
-			{Line: "经验 0", Align: tview.AlignLeft, Color: conf.NormalColor},
-			{Line: "生命 100", Align: tview.AlignLeft, Color: conf.NormalColor},
-			{Line: "法力 100", Align: tview.AlignLeft, Color: conf.NormalColor},
-			{Line: "精力 100", Align: tview.AlignLeft, Color: conf.NormalColor},
+			{Line: "等级 0%", Align: tview.AlignLeft, Color: conf.NormalColor},
+			{Line: "经验 0%", Align: tview.AlignLeft, Color: conf.NormalColor},
+			{Line: "生命 100%", Align: tview.AlignLeft, Color: conf.NormalColor},
+			{Line: "法力 100%", Align: tview.AlignLeft, Color: conf.NormalColor},
+			{Line: "精力 100%", Align: tview.AlignLeft, Color: conf.NormalColor},
 			{Line: " ", Align: tview.AlignLeft, Color: conf.NormalColor},
 			{Line: " ", Align: tview.AlignLeft, Color: conf.NormalColor},
 
-			{Line: "心法 九阳神功", Align: tview.AlignLeft, Color: conf.NormalColor},
-			{Line: "功法 乾坤大挪移", Align: tview.AlignLeft, Color: conf.NormalColor},
-			{Line: "轻功 梯云纵", Align: tview.AlignLeft, Color: conf.NormalColor},
-			{Line: "吐纳 搬山诀", Align: tview.AlignLeft, Color: conf.NormalColor},
-			{Line: "灵器 翻天印", Align: tview.AlignLeft, Color: conf.NormalColor},
-			{Line: "法袍 皂色玄衣", Align: tview.AlignLeft, Color: conf.NormalColor},
+			{Line: "心法 ", Align: tview.AlignLeft, Color: conf.NormalColor},
+			{Line: "功法 ", Align: tview.AlignLeft, Color: conf.NormalColor},
+			{Line: "轻功 ", Align: tview.AlignLeft, Color: conf.NormalColor},
+			{Line: "吐纳 ", Align: tview.AlignLeft, Color: conf.NormalColor},
+			{Line: "灵器 ", Align: tview.AlignLeft, Color: conf.NormalColor},
+			{Line: "法袍 ", Align: tview.AlignLeft, Color: conf.NormalColor},
 		})
 		helpBox = createBox("帮助", []model.TextPrint{
 			{Line: "F1  帮助菜单", Align: tview.AlignLeft, Color: conf.NormalColor},
@@ -58,6 +58,17 @@ func StartScene(startCode int) *tview.Flex {
 			//{Line: "F10 挂机界面", Align: tview.AlignLeft, Color: conf.NormalColor},
 			{Line: "F11 保存游戏", Align: tview.AlignLeft, Color: conf.NormalColor},
 			{Line: "F12 退出游戏 ", Align: tview.AlignLeft, Color: conf.NormalColor},
+		})
+		newsBox = createBox("世界", []model.TextPrint{
+			{Line: "甲子年 甲子月 甲子日", Align: tview.AlignLeft, Color: conf.NormalColor},
+			{Line: "泰山-三才宫", Align: tview.AlignLeft, Color: conf.NormalColor},
+			{Line: "内门-阅空阁", Align: tview.AlignLeft, Color: conf.NormalColor},
+			{Line: " ", Align: tview.AlignLeft, Color: conf.NormalColor},
+			{Line: " ", Align: tview.AlignLeft, Color: conf.NormalColor},
+			{Line: " ", Align: tview.AlignLeft, Color: conf.NormalColor},
+
+			{Line: "十八日后：", Align: tview.AlignLeft, Color: conf.NormalColor},
+			{Line: "将在黑水举办荡魔大会", Align: tview.AlignLeft, Color: conf.NormalColor},
 		})
 	}
 	gameFlex := startScene(startCode)
@@ -136,7 +147,7 @@ func startScene(startCode int) *tview.Flex {
 				AddItem(formatBox, 0, 1, false).
 				AddItem(box4, 0, 1, false).
 				AddItem(formatBox, 0, 1, false), 4, 0, false)
-		service.AddGoods(0, 1)
+		service.AddGoods(1, 1)
 
 	case 4:
 		gameFlex.AddItem(tview.NewFlex().SetDirection(tview.FlexColumn).
@@ -149,6 +160,19 @@ func startScene(startCode int) *tview.Flex {
 				AddItem(box4, 0, 1, false).
 				AddItem(formatBox, 0, 1, false), 4, 0, false).
 			AddItem(box5, 6, 0, false)
+	case 5:
+
+		gameFlex.AddItem(tview.NewFlex().SetDirection(tview.FlexColumn).
+			AddItem(formatBox, 0, 1, false).
+			AddItem(box1, 0, 1, false).
+			AddItem(formatBox, 0, 1, false), 3, 0, false).
+			AddItem(box3, 6, 0, false).
+			AddItem(tview.NewFlex().SetDirection(tview.FlexColumn).
+				AddItem(formatBox, 0, 1, false).
+				AddItem(box4, 0, 1, false).
+				AddItem(formatBox, 0, 1, false), 4, 0, false).
+			AddItem(box5, 6, 0, false).
+			AddItem(box6, 6, 0, false)
 
 	default:
 
