@@ -7,7 +7,6 @@ type CaseStruct struct {
 }
 
 type BagsStruct struct {
-	Bag [64]CaseStruct
-
+	Bag   [64]CaseStruct
 	UseId int
 }

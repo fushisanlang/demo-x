@@ -2,71 +2,60 @@ package main
 
 import (
 	"demo-x/model"
-	"encoding/csv"
-	"encoding/gob"
-	"fmt"
-	"io"
-	"log"
-	"os"
+	"demo-x/service"
+	"github.com/rivo/tview"
 	"strconv"
 )
 
+type CaseStruct struct {
+	ID     int
+	GoodID int
+	Count  int
+}
+
+type BagsStruct struct {
+	Bag   [64]CaseStruct
+	UseID int
+}
+
 func main() {
-	file, err := os.Open("baseData/goodsdb.csv")
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer file.Close()
+	// Create the application and the table.
+	app := tview.NewApplication()
+	table := tview.NewTable().SetBorders(true)
 
-	csvReader := csv.NewReader(file)
-
-	goodsSlice := []model.GoodsInfo{}
-
-	for {
-		record, err := csvReader.Read()
-		if err == io.EOF {
-			break
-		}
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		goodsInfo := model.GoodsInfo{}
-		goodsInfo.GoodsId, _ = strconv.Atoi(record[0])
-		goodsInfo.GoodsName = record[1]
-		goodsInfo.GoodsBuy, _ = strconv.Atoi(record[2])
-		goodsInfo.GoodsSale, _ = strconv.Atoi(record[3])
-		goodsInfo.GoodsLevel, _ = strconv.Atoi(record[4])
-
-		goodsSlice = append(goodsSlice, goodsInfo)
+	// Create the bags data.
+	bags := service.Bags
+	for i := 0; i < 64; i++ {
+		bags[i] = model.CaseStruct(CaseStruct{ID: i, GoodID: i % 10, Count: i % 5})
 	}
 
-	//file2, err := os.Create("data/goods.dat")
-	//if err != nil {
-	//	panic(err)
-	//}
-	//defer file2.Close()
-	//encoder := gob.NewEncoder(file2)
-	//err = encoder.Encode(goodsSlice)
-	//if err != nil {
-	//	panic(err)
-	//}
-	file, err = os.Open("data/goods.dat")
-	if err != nil {
+	// Add the bags data to the table.
+	for row := 0; row < 8; row++ {
+		for col := 0; col < 16; col += 2 {
+			// Calculate the index into the bags array.
+			index := row*16 + col/2
+
+			// If we've reached the end of the bags data, break out of the loop.
+			if index >= len(bags) {
+				break
+			}
+
+			// Add a new cell to the table.
+			goodID := tview.NewTableCell(
+				strconv.Itoa(bags[index].GoodID)).
+				SetTextColor(tview.Styles.PrimaryTextColor).
+				SetAlign(tview.AlignCenter)
+			count := tview.NewTableCell(
+				strconv.Itoa(bags[index].Count)).
+				SetTextColor(tview.Styles.PrimaryTextColor).
+				SetAlign(tview.AlignCenter)
+			table.SetCell(row, col, goodID)
+			table.SetCell(row, col+1, count)
+		}
+	}
+
+	// Set the table as the root component of the application.
+	if err := app.SetRoot(table, true).Run(); err != nil {
 		panic(err)
 	}
-	defer file.Close()
-
-	// 创建一个解码器
-	decoder := gob.NewDecoder(file)
-
-	// 解码数据并存储到新的切片
-	var newGoodsSlice []model.GoodsInfo
-	err = decoder.Decode(&newGoodsSlice)
-	if err != nil {
-		panic(err)
-	}
-
-	// 打印新的切片
-	fmt.Println(newGoodsSlice[0])
 }

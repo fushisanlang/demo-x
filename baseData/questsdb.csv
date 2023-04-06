@@ -1,0 +1,27 @@
+1,运转《纳元诀》,运转《纳元诀》,,0,,0,1
+
+
+
+[{
+"QuestsId":1,
+"QuestsName":"运转《纳元诀》",
+"":"",
+"":"",
+"":"",
+"":"",
+"":"","":""
+
+
+},{
+}]
+
+
+
+	QuestsId int
+	QuestsName string
+	QuestsInfo string
+	QuestsCondition []QuestsCell
+	QuestsLevel int
+	QuestsReward  []ManyGoods
+	QuestsBefore int
+	QuestsMaster int

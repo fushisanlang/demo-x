@@ -7,23 +7,13 @@ import (
 	"github.com/rivo/tview"
 )
 
-func StartCapture(app *tview.Application) *tview.Flex {
+func QuestsCapture(app *tview.Application) *tview.Flex {
 
-	scene1 := scenes.StartScene(startCode)
+	scene1 := scenes.QuestsScene()
 	scene1.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {
 		if event.Key() == tcell.KeyEnter && startCode < startMaxCode {
 			startCode = startCode + 1
 			app.SetRoot(StartCapture(app), true)
-			return nil
-		} else if startCode >= startMaxCode {
-			switch event.Key() {
-			case tcell.KeyF1:
-				app.SetRoot(HelpCapture(app), true)
-			case tcell.KeyF2:
-				app.SetRoot(BagCapture(app), true)
-			case tcell.KeyF4:
-				app.SetRoot(QuestsCapture(app), true)
-			}
 			return nil
 		}
 		return event

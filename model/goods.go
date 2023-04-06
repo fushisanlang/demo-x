@@ -7,8 +7,14 @@ type GoodsInfo struct {
 	GoodsBuy    int
 	GoodsSale   int
 	GoodsLevel  int
+	GoodsInfo   string
 }
 type GoodsType struct {
 	GoodsTypeId int
 	GoodsType   string
+}
+
+type ManyGoods struct {
+	GoodsId    int
+	GoodsCount int
 }

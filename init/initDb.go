@@ -68,6 +68,7 @@ func initGoogsDb() {
 		goodsInfo.GoodsSale, _ = strconv.Atoi(record[3])
 		goodsInfo.GoodsLevel, _ = strconv.Atoi(record[4])
 		goodsInfo.GoodsTypeId, _ = strconv.Atoi(record[5])
+		goodsInfo.GoodsInfo = record[6]
 
 		goodsSlice = append(goodsSlice, goodsInfo)
 	}
