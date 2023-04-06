@@ -2,6 +2,7 @@ package scenes
 
 import (
 	"demo-x/conf"
+	"demo-x/data"
 	"demo-x/model"
 	"demo-x/service"
 
@@ -24,7 +25,7 @@ func StartScene(startCode int) *tview.Flex {
 
 	if startCode > 5 {
 		questsBox = createBox("任务", []model.TextPrint{
-			{Line: "- 修炼" + service.NewGoodsSlice[0].GoodsName, Align: tview.AlignLeft, Color: conf.BrightColor},
+			{Line: "- 修炼" + data.GoodsMap[0].GoodsName, Align: tview.AlignLeft, Color: conf.BrightColor},
 		})
 		statusBox = createBox("角色", []model.TextPrint{
 			{Line: "角色 丹阳子", Align: tview.AlignLeft, Color: conf.NormalColor},
@@ -94,14 +95,14 @@ func startScene(startCode int) *tview.Flex {
 		{},
 		{Line: "刘不空:", Align: tview.AlignLeft, Color: conf.BrightColor},
 		{Line: "  徒儿，距离我带你回门已有一十八年了。这几年你外功底子打得不错，已经可以修炼内功了。", Align: tview.AlignLeft, Color: conf.NormalColor},
-		{Line: "  这是本门的入门内功" + service.NewGoodsSlice[0].GoodsName + "，你从今日就开始修炼吧。", Align: tview.AlignLeft, Color: conf.NormalColor},
+		{Line: "  这是本门的入门内功" + data.GoodsMap[1].GoodsName + "，你从今日就开始修炼吧。", Align: tview.AlignLeft, Color: conf.NormalColor},
 		{},
 	})
 	box4 := createAlertBox("", []model.TextPrint{
 
 		{Line: "获得物品", Align: tview.AlignCenter, Color: conf.NormalColor},
 
-		{Line: service.NewGoodsSlice[0].GoodsName, Align: tview.AlignCenter, Color: conf.ExclusiveColors},
+		{Line: data.GoodsMap[0].GoodsName, Align: tview.AlignCenter, Color: conf.ExclusiveColors},
 	})
 	box5 := createBox("", []model.TextPrint{
 		{},
@@ -112,7 +113,7 @@ func startScene(startCode int) *tview.Flex {
 	box6 := createBox("", []model.TextPrint{
 		{},
 		{Line: "刘不空:", Align: tview.AlignLeft, Color: conf.BrightColor},
-		{Line: "  我近日要去黑水参加荡魔大会。如果" + service.NewGoodsSlice[0].GoodsName + "修炼中有不解之处，可以去找你师兄。", Align: tview.AlignLeft, Color: conf.NormalColor},
+		{Line: "  我近日要去黑水参加荡魔大会。如果" + data.GoodsMap[0].GoodsName + "修炼中有不解之处，可以去找你师兄。", Align: tview.AlignLeft, Color: conf.NormalColor},
 		{},
 	})
 

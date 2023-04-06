@@ -2,6 +2,7 @@ package scenes
 
 import (
 	"demo-x/conf"
+	"demo-x/data"
 	"demo-x/service"
 
 	"github.com/gogf/gf/util/gconv"
@@ -43,7 +44,7 @@ func BagScene() *tview.Flex {
 			// Add a new cell to the table.
 			cellString := ""
 			if bags.Bag[index].GoodID != 0 {
-				cellString = service.NewGoodsSlice[bags.Bag[index].GoodID].GoodsName + " *" + gconv.String(bags.Bag[index].Count)
+				cellString = data.GoodsMap[bags.Bag[index].GoodID].GoodsName + " *" + gconv.String(bags.Bag[index].Count)
 			}
 			cell = tview.NewTableCell(cellString).
 				SetTextColor(conf.NormalColor).

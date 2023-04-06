@@ -12,6 +12,7 @@ var GuideColor tcell.Color
 var ExclusiveColors tcell.Color
 var SaveFileList []string
 var SaveBakDir string
+var SqlFile string
 
 func init() {
 	GameName = "demo-x"
@@ -23,4 +24,5 @@ func init() {
 	GuideColor = tcell.ColorForestGreen
 	ExclusiveColors = tcell.ColorMediumSeaGreen
 	SaveFileList = []string{"bag.bin"}
+
 }

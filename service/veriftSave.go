@@ -1,19 +1,22 @@
 package service
 
 import (
-	"demo-x/conf"
 	"os"
 )
 
 func VeriftSave() bool {
+	//判断存档
 	statusCode := true
-	saveFileList := conf.SaveFileList
-	for i := 0; i < len(saveFileList); i++ {
-		if !veriftSave(saveFileList[i]) {
-			statusCode = false
-			break
-		}
-	}
+	statusCode = false
+	//dao.VeriftSave()
+	//saveFileList := conf.SaveFileList
+	//for i := 0; i < len(saveFileList); i++ {
+	//	if !veriftSave(saveFileList[i]) {
+	//		statusCode = false
+	//		break
+	//	}
+	//}
+	//return statusCode
 	return statusCode
 }
 func veriftSave(saveFile string) bool {

@@ -8,6 +8,9 @@ import (
 )
 
 func VerifyScene() *tview.Flex {
+	//读取配置
+	//指导用户调整窗口
+
 	statusBox := createBoxWithoutSider([]model.TextPrint{{},
 		{Line: "玩家您好", Align: tview.AlignCenter, Color: conf.NormalColor},
 		{Line: "你正在打开的游戏", Align: tview.AlignCenter, Color: conf.NormalColor},
