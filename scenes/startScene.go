@@ -5,6 +5,7 @@ import (
 	"demo-x/data"
 	"demo-x/model"
 	"demo-x/service"
+	"demo-x/tools"
 
 	"github.com/rivo/tview"
 )
@@ -24,9 +25,15 @@ func StartScene(startCode int) *tview.Flex {
 	newsBox := tview.NewBox()
 
 	if startCode > 5 {
-		questsBox = createBox("任务", []model.TextPrintStruct{
-			{Line: "- " + data.QuestsMap[1].QuestsName, Align: tview.AlignLeft, Color: conf.BrightColor},
-		})
+		lineList := []model.TextPrintStruct{}
+		for i := 1; i <= len(service.GameData.UserQuestDoing) && i <= 5; i++ {
+
+			lineList = append(lineList,
+				model.TextPrintStruct{service.GameData.UserQuestDoing[i].QuestsName, tview.AlignLeft, conf.NormalColor},
+				model.TextPrintStruct{service.GameData.UserQuestDoing[i].QuestsInfo, tview.AlignLeft, conf.SecondColor},
+				model.TextPrintStruct{"", tview.AlignLeft, conf.NormalColor})
+		}
+		questsBox = createBox("任务", lineList)
 		statusBox = createBox("角色", []model.TextPrintStruct{
 			{Line: "角色 " + service.GameData.UserName, Align: tview.AlignLeft, Color: conf.NormalColor},
 			{Line: "等级 0%", Align: tview.AlignLeft, Color: conf.NormalColor},
@@ -47,11 +54,11 @@ func StartScene(startCode int) *tview.Flex {
 		helpBox = createBox("帮助", []model.TextPrintStruct{
 			{Line: "F1  帮助菜单", Align: tview.AlignLeft, Color: conf.NormalColor},
 			{Line: "F2  打开背包", Align: tview.AlignLeft, Color: conf.NormalColor},
-			{Line: "F3  技能列表", Align: tview.AlignLeft, Color: conf.NormalColor},
+			//{Line: "F3  技能列表", Align: tview.AlignLeft, Color: conf.NormalColor},
 			{Line: "F4  任务列表", Align: tview.AlignLeft, Color: conf.NormalColor},
 			{Line: " ", Align: tview.AlignLeft, Color: conf.NormalColor},
 			//{Line: "F5  任务列表", Align: tview.AlignLeft, Color: conf.NormalColor},
-			{Line: "F6  打开地图", Align: tview.AlignLeft, Color: conf.NormalColor},
+			//{Line: "F6  打开地图", Align: tview.AlignLeft, Color: conf.NormalColor},
 			//{Line: "F7  任务列表", Align: tview.AlignLeft, Color: conf.NormalColor},
 			//{Line: "F8  任务列表", Align: tview.AlignLeft, Color: conf.NormalColor},
 			{Line: " ", Align: tview.AlignLeft, Color: conf.NormalColor},
@@ -175,10 +182,9 @@ func startScene(startCode int) *tview.Flex {
 			AddItem(box5, 6, 0, false).
 			AddItem(box6, 6, 0, false)
 		//添加任务
-		service.AddQuests(data.QuestsMap[1])
-		service.AddQuests(data.QuestsMap[1])
-		service.AddQuests(data.QuestsMap[1])
-		service.AddQuests(data.QuestsMap[1])
+		err := service.AddQuests(data.QuestsMap[1])
+
+		tools.CheckErr(err)
 
 	default:
 

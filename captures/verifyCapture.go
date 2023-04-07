@@ -15,6 +15,7 @@ func VerifyCapture(app *tview.Application) *tview.Flex {
 		if event.Key() == tcell.KeyEnter {
 			status := service.VeriftSave()
 			if status {
+				service.LoadData()
 				app.SetRoot(VerifySaveFileSuccessCapture(app), true)
 			} else {
 				app.SetRoot(VerifySaveFileFailCapture(app), true)

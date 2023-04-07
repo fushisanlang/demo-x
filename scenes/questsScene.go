@@ -8,10 +8,10 @@ import (
 	"github.com/rivo/tview"
 )
 
-func QuestsScene() *tview.Flex {
+func QuestsScene(pageId int) *tview.Flex {
 
 	formatBox := aFormatBox
-	footBox := aFootBox
+	footBox := aFootBoxESC
 	statusBox := tview.NewBox()
 	questsBox := tview.NewBox()
 	mapBox := tview.NewBox()
@@ -21,8 +21,10 @@ func QuestsScene() *tview.Flex {
 
 	questsList := service.GameData.UserQuestDoing
 	lineList := []model.TextPrintStruct{}
-	for i := 1; i <= len(questsList) && i <= 5; i++ {
+
+	for i := 1 + (pageId-1)*5; i <= len(questsList) && i <= 5*pageId; i++ {
 		lineList = append(lineList,
+			model.TextPrintStruct{Line: "任务" + gconv.String(i) + " ：" + questsList[i].QuestsName, Align: tview.AlignLeft, Color: conf.BrightColor},
 			model.TextPrintStruct{Line: "任务名称：" + questsList[i].QuestsName, Align: tview.AlignLeft, Color: conf.BrightColor},
 			model.TextPrintStruct{Line: "任务详情：" + questsList[i].QuestsInfo, Align: tview.AlignLeft, Color: conf.NormalColor},
 		)
@@ -37,12 +39,23 @@ func QuestsScene() *tview.Flex {
 		}
 		lineList = append(lineList, model.TextPrintStruct{Line: "", Align: tview.AlignLeft, Color: conf.SecondColor})
 	}
-	gameBox = createBox("", lineList)
+	gameBox = createBox("第"+gconv.String(pageId)+"页", lineList)
+	pageBox := tview.NewBox()
+	switch pageId {
+	case 1:
+		pageBox = createBoxWithoutSider([]model.TextPrintStruct{{"点击 \"->\" 键向右翻页", tview.AlignCenter, conf.GuideColor}})
+	case 2:
+		pageBox = createBoxWithoutSider([]model.TextPrintStruct{{"点击 \"<-/->\" 键向左/右翻页", tview.AlignCenter, conf.GuideColor}})
+	case 3:
+		pageBox = createBoxWithoutSider([]model.TextPrintStruct{{"点击 \"<-\" 键 向左翻页", tview.AlignCenter, conf.GuideColor}})
+
+	}
 
 	gameFlex := tview.NewFlex().SetDirection(tview.FlexRow).
 		AddItem(formatBox, 0, 1, false).
 		AddItem(gameBox, 30, 0, false).
 		AddItem(formatBox, 0, 1, false).
+		AddItem(pageBox, 2, 0, false).
 		AddItem(footBox, 5, 0, false)
 	flex := baseScene(statusBox, questsBox, mapBox, helpBox, newsBox, gameFlex)
 

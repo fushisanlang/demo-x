@@ -22,7 +22,7 @@ func VerifySaveFileSuccessCapture(app *tview.Application) *tview.Flex {
 	scene1 := scenes.VeriftSaveFileSuccessScene()
 	scene1.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {
 		if event.Key() == tcell.KeyEnter {
-			app.SetRoot(VerifyCapture(app), true)
+			app.SetRoot(CaptureMap[service.GameData.UserSaveId](app), true)
 			return nil
 		}
 		return event

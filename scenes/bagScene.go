@@ -11,7 +11,7 @@ import (
 
 func BagScene() *tview.Flex {
 	formatBox := aFormatBox
-	footBox := aFootBox
+	footBox := aFootBoxESC
 	statusBox := tview.NewBox()
 	questsBox := tview.NewBox()
 	mapBox := tview.NewBox()

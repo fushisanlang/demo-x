@@ -3,6 +3,8 @@ package service
 import (
 	"demo-x/conf"
 	"demo-x/model"
+	"demo-x/tools"
+	"encoding/gob"
 	"os"
 )
 
@@ -131,8 +133,25 @@ func InitData() {
 			},
 		},
 	}
-
+	SaveData()
 }
-func LoadSave() {
 
+func LoadData() {
+	file, err := os.Open(conf.SaveFile)
+	tools.CheckErr(err)
+	defer file.Close()
+	// 创建一个解码器
+	decoder := gob.NewDecoder(file)
+	// 解码数据并存储到新的切片
+	err = decoder.Decode(&GameData)
+	tools.CheckErr(err)
+}
+
+func SaveData() {
+	file, err := os.Create(conf.SaveFile)
+	tools.CheckErr(err)
+	defer file.Close()
+	encoder := gob.NewEncoder(file)
+	err = encoder.Encode(GameData)
+	tools.CheckErr(err)
 }

@@ -2,6 +2,7 @@ package captures
 
 import (
 	"demo-x/scenes"
+	"demo-x/service"
 
 	"github.com/gdamore/tcell/v2"
 	"github.com/rivo/tview"
@@ -15,6 +16,8 @@ func HelpCapture(app *tview.Application) *tview.Flex {
 			startCode = startCode + 1
 			app.SetRoot(StartCapture(app), true)
 			return nil
+		} else if event.Key() == tcell.KeyEsc {
+			app.SetRoot(CaptureMap[service.GameData.UserSaveId](app), true)
 		}
 		return event
 	})

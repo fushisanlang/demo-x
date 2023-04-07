@@ -53,6 +53,14 @@ func footBox() *tview.Box {
 	})
 	return footBox
 }
+func footBoxEsc() *tview.Box {
+	footBox := createBoxWithoutSider([]model.TextPrintStruct{
+		{},
+		{Line: "点击 \"esc\" 键返回", Align: tview.AlignCenter, Color: conf.GuideColor},
+		{},
+	})
+	return footBox
+}
 func baseSceneWithSide(statusBox, questsBox, mapBox, helpBox, newsBox *tview.Box, gameFlex *tview.Flex) *tview.Flex {
 	flex := tview.NewFlex().
 		AddItem(tview.NewFlex().SetDirection(tview.FlexRow).
