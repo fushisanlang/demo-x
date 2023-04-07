@@ -1,17 +1,17 @@
 package model
 
-type QuestsInfo struct {
+type QuestsInfoStruct struct {
 	QuestsId        int
 	QuestsName      string
 	QuestsInfo      string
-	QuestsCondition []QuestsCell
+	QuestsCondition []QuestsCellStruct
 	QuestsLevel     int
-	QuestsReward    []ManyGoods
+	QuestsReward    []ManyGoodsStruct
 	QuestsBefore    int
 	QuestsMaster    int
 }
 
-type QuestsCell struct {
+type QuestsCellStruct struct {
 	QuestsCellInfo  string
 	QuestsCellCount int
 }

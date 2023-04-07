@@ -10,8 +10,8 @@ import (
 )
 
 func BagScene() *tview.Flex {
-	formatBox := formatBox()
-	footBox := footBox()
+	formatBox := aFormatBox
+	footBox := aFootBox
 	statusBox := tview.NewBox()
 	questsBox := tview.NewBox()
 	mapBox := tview.NewBox()
@@ -19,7 +19,6 @@ func BagScene() *tview.Flex {
 	newsBox := tview.NewBox()
 
 	gameBox := tview.NewTable().SetBorders(false)
-	bags := service.Bags
 
 	cell := tview.NewTableCell("               ")
 	cell.SetExpansion(1)
@@ -43,18 +42,22 @@ func BagScene() *tview.Flex {
 
 			// Add a new cell to the table.
 			cellString := ""
-			if bags.Bag[index].GoodID != 0 {
-				cellString = data.GoodsMap[bags.Bag[index].GoodID].GoodsName + " *" + gconv.String(bags.Bag[index].Count)
+
+			if service.GameData.UserBag.Bag[index].GoodID != 0 {
+				cellString = data.GoodsMap[service.GameData.UserBag.Bag[index].GoodID].GoodsName +
+					" *" + gconv.String(service.GameData.UserBag.Bag[index].Count)
+
 			}
 			cell = tview.NewTableCell(cellString).
 				SetTextColor(conf.NormalColor).
 				SetAlign(tview.AlignCenter)
 
 			gameBox.SetCell(row+1, col, cell)
-
 		}
+
 	}
 
+	//panic(data.GoodsMap[bags.Bag[0].GoodID].GoodsName )
 	gameFlex := tview.NewFlex().SetDirection(tview.FlexRow).
 		AddItem(formatBox, 0, 1, false).
 		AddItem(gameBox, 30, 0, false).

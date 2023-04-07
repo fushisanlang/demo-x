@@ -1,6 +1,6 @@
 package model
 
-type GoodsInfo struct {
+type GoodsInfoStruct struct {
 	GoodsId    int
 	GoodsType  string
 	GoodsName  string
@@ -9,12 +9,12 @@ type GoodsInfo struct {
 	GoodsLevel int
 	GoodsInfo  string
 }
-type GoodsType struct {
+type GoodsTypeStruct struct {
 	GoodsTypeId int
 	GoodsType   string
 }
 
-type ManyGoods struct {
-	GoodsId    GoodsInfo
+type ManyGoodsStruct struct {
+	GoodsId    GoodsInfoStruct
 	GoodsCount int
 }

@@ -8,14 +8,14 @@ import (
 )
 
 func StoryScene() *tview.Flex {
-	formatBox := formatBox()
-	footBox := footBox()
+	formatBox := aFormatBox
+	footBox := aFootBox
 	statusBox := tview.NewBox()
 	questsBox := tview.NewBox()
 	mapBox := tview.NewBox()
 	helpBox := tview.NewBox()
 	newsBox := tview.NewBox()
-	gameBox := createBoxWithoutSider([]model.TextPrint{
+	gameBox := createBoxWithoutSider([]model.TextPrintStruct{
 		{},
 		{Line: "嘉德十八年，景帝痴迷长生之术，听信国师何继谗言。", Align: tview.AlignCenter, Color: conf.NormalColor},
 		{Line: "在全国抓捕三千名童男童女准备炼制不老丹。", Align: tview.AlignCenter, Color: conf.NormalColor},

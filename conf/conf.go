@@ -13,16 +13,17 @@ var ExclusiveColors tcell.Color
 var SaveFileList []string
 var SaveBakDir string
 var SqlFile string
+var SaveFile string
 
 func init() {
 	GameName = "demo-x"
 	SaveBakDir = "data_bak"
-	NormalColor = tcell.ColorWhite
-	AlertColor = tcell.ColorOrangeRed
-	SecondColor = tcell.ColorGray
-	BrightColor = tcell.ColorGreenYellow
-	GuideColor = tcell.ColorForestGreen
+	NormalColor = tcell.ColorWhite       //普通显示
+	AlertColor = tcell.ColorOrangeRed    //警告显示
+	SecondColor = tcell.ColorGray        //非必要显示
+	BrightColor = tcell.ColorGreenYellow //高亮显示
+	GuideColor = tcell.ColorForestGreen  //操作指引
 	ExclusiveColors = tcell.ColorMediumSeaGreen
 	SaveFileList = []string{"bag.bin"}
-
+	SaveFile = "data/save.bat"
 }

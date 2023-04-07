@@ -7,8 +7,8 @@ import (
 
 func HelpScene() *tview.Flex {
 
-	formatBox := formatBox()
-	footBox := footBox()
+	formatBox := aFormatBox
+	footBox := aFootBox
 	statusBox := tview.NewBox()
 	questsBox := tview.NewBox()
 	mapBox := tview.NewBox()

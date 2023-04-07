@@ -2,6 +2,7 @@ package captures
 
 import (
 	"demo-x/scenes"
+	"demo-x/service"
 	"time"
 
 	"github.com/gdamore/tcell/v2"
@@ -33,6 +34,7 @@ func VerifySaveFileFailCapture(app *tview.Application) *tview.Flex {
 	scene1 := scenes.VeriftSaveFileFailScene()
 	scene1.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {
 		if event.Key() == tcell.KeyEnter {
+			service.InitData()
 			app.SetRoot(StoryCapture(app), true)
 			return nil
 		}

@@ -8,14 +8,14 @@ import (
 )
 
 func VeriftSaveFileScene() *tview.Flex {
-	formatBox := formatBox()
-	footBox := footBox()
+	formatBox := aFormatBox
+	footBox := aFootBox
 	statusBox := tview.NewBox()
 	questsBox := tview.NewBox()
 	mapBox := tview.NewBox()
 	helpBox := tview.NewBox()
 	newsBox := tview.NewBox()
-	gameBox := createBoxWithoutSider([]model.TextPrint{
+	gameBox := createBoxWithoutSider([]model.TextPrintStruct{
 		{},
 		{Line: "正在检查存档，请稍候。。。", Align: tview.AlignCenter, Color: conf.BrightColor},
 		{},
@@ -31,14 +31,14 @@ func VeriftSaveFileScene() *tview.Flex {
 	return flex
 }
 func VeriftSaveFileSuccessScene() *tview.Flex {
-	formatBox := formatBox()
-	footBox := footBox()
+	formatBox := aFormatBox
+	footBox := aFootBox
 	statusBox := tview.NewBox()
 	questsBox := tview.NewBox()
 	mapBox := tview.NewBox()
 	helpBox := tview.NewBox()
 	newsBox := tview.NewBox()
-	gameBox := createBoxWithoutSider([]model.TextPrint{
+	gameBox := createBoxWithoutSider([]model.TextPrintStruct{
 		{},
 		{Line: "存档加载完毕", Align: tview.AlignCenter, Color: conf.BrightColor},
 		{},
@@ -55,14 +55,14 @@ func VeriftSaveFileSuccessScene() *tview.Flex {
 	return flex
 }
 func VeriftSaveFileFailScene() *tview.Flex {
-	formatBox := formatBox()
-	footBox := footBox()
+	formatBox := aFormatBox
+	footBox := aFootBox
 	statusBox := tview.NewBox()
 	questsBox := tview.NewBox()
 	mapBox := tview.NewBox()
 	helpBox := tview.NewBox()
 	newsBox := tview.NewBox()
-	gameBox := createBoxWithoutSider([]model.TextPrint{
+	gameBox := createBoxWithoutSider([]model.TextPrintStruct{
 		{},
 		{Line: "未找到存档或存档异常，新建存档中。。。", Align: tview.AlignCenter, Color: conf.BrightColor},
 		{Line: "如欲修复存档，请在" + conf.SaveBakDir + "文件夹中查找存档备份。", Align: tview.AlignCenter, Color: conf.BrightColor},

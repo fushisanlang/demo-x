@@ -8,7 +8,7 @@ import (
 	"github.com/rivo/tview"
 )
 
-func createAlertBox(title string, content []model.TextPrint) *tview.Box {
+func createAlertBox(title string, content []model.TextPrintStruct) *tview.Box {
 	box := tview.NewBox().SetTitle(title).SetBackgroundColor(tcell.ColorDarkGray)
 	box.SetDrawFunc(func(screen tcell.Screen, x, y, width, height int) (int, int, int, int) {
 		for i, line := range content {
@@ -18,7 +18,7 @@ func createAlertBox(title string, content []model.TextPrint) *tview.Box {
 	})
 	return box
 }
-func createBoxWithoutSider(content []model.TextPrint) *tview.Box {
+func createBoxWithoutSider(content []model.TextPrintStruct) *tview.Box {
 	box := tview.NewBox().SetBorder(false)
 	box.SetDrawFunc(func(screen tcell.Screen, x, y, width, height int) (int, int, int, int) {
 		for i, line := range content {
@@ -28,7 +28,7 @@ func createBoxWithoutSider(content []model.TextPrint) *tview.Box {
 	})
 	return box
 }
-func createBox(title string, content []model.TextPrint) *tview.Box {
+func createBox(title string, content []model.TextPrintStruct) *tview.Box {
 	box := tview.NewBox().SetBorder(true).SetTitle(title)
 	box.SetDrawFunc(func(screen tcell.Screen, x, y, width, height int) (int, int, int, int) {
 		for i, line := range content {
@@ -40,13 +40,13 @@ func createBox(title string, content []model.TextPrint) *tview.Box {
 }
 func formatBox() *tview.Box {
 	//用来创建一个空box，占位使用，确保显示内容上下剧中
-	formatBox := createBoxWithoutSider([]model.TextPrint{
+	formatBox := createBoxWithoutSider([]model.TextPrintStruct{
 		{},
 	})
 	return formatBox
 }
 func footBox() *tview.Box {
-	footBox := createBoxWithoutSider([]model.TextPrint{
+	footBox := createBoxWithoutSider([]model.TextPrintStruct{
 		{},
 		{Line: "点击 \"回车\" 键继续", Align: tview.AlignCenter, Color: conf.GuideColor},
 		{},
